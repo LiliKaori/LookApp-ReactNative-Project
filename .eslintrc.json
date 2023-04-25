@@ -1,0 +1,47 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard",
+        "plugin:prettier/recommended"
+    ],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "eslint-plugin-import-helpers",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+        {
+        "singleQuote":true,
+        "semi": false,
+        "arrowParens": "avoid",
+        "trailComma": false,
+        "endOfLine": "auto",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": true
+        }],
+        "import-helpers/order-imports": [
+            "warn",
+            {
+                "newlinesBetween": "always", // new line between groups
+                "groups": [
+                    "module",
+                    "/^@shared/",
+                    ["parent", "sibling", "index"]
+                ],
+                "alphabetize": { "order": "asc", "ignoreCase": true }
+            }
+        ]
+    }
+}
