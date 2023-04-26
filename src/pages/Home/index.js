@@ -1,24 +1,33 @@
 import {StatusBar} from 'expo-status-bar'
 import React from 'react'
-import {Text, View} from 'react-native'
 
-import {Title} from '../../Components'
+import {Box, Title, Button, Spacer, Text} from '../../Components'
 
 export default function Home() {
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <Title>Components</Title>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Oi, sou a home!</Text>
+    <Box justify="center" fluid background="dark" hasPadding align="center">
+      <Box justify="center" align="center">
+        <Title color="light" variant="big" bold>
+          LOOKAPP
+        </Title>
+        <Spacer />
+        <Text align="center" spacing="0px 40px">
+          Stay on top of the fashion world and buy your favorite looks.
+        </Text>
+      </Box>
+
+      <Box justify="flex-end" fluid align="center">
+        <Button block>
+          <Text>SignIn my account</Text>
+        </Button>
+        <Spacer size="20px" />
+        <Text underline color="light" onPress={() => alert('teste')}>
+          Create new account
+        </Text>
+        <Spacer size="70px" />
+      </Box>
 
       <StatusBar style="auto" />
-    </View>
+    </Box>
   )
 }
