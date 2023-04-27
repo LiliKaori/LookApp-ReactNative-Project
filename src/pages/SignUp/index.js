@@ -3,7 +3,7 @@ import React from 'react'
 
 import {Box, Title, Button, Spacer, Text, Input} from '../../Components'
 
-export default function SignUp() {
+export function SignUp() {
   return (
     <Box justify="center" background="light" hasPadding align="center">
       <Title bold>Create new account.</Title>

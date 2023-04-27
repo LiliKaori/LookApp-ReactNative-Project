@@ -1,17 +1,21 @@
 import React from 'react'
 import {StatusBar} from 'react-native'
 
-import {Box, Text} from '../../Components'
+import {Box, ScrollView, Spacer} from '../../Components'
 import Header from '../../Components/Header'
+import PostsList from '../../Components/Posts/list'
+import StoriesList from '../../Components/Stories/list'
 
-export default function Feed() {
+export function Feed() {
   return (
     <Box background="light">
       <Header title="Explore" />
-      <Text>Feed</Text>
-      <Text>Feed</Text>
-      <Text>Feed</Text>
-      <Text>Feed</Text>
+      <ScrollView>
+        <StoriesList />
+        <Spacer />
+        <PostsList />
+      </ScrollView>
+
       <StatusBar style="auto" />
     </Box>
   )

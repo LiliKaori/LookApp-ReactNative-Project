@@ -3,7 +3,7 @@ import React from 'react'
 
 import {Box, Title, Button, Spacer, Text} from '../../Components'
 
-export default function Home() {
+export function Home() {
   return (
     <Box justify="center" fluid background="dark" hasPadding align="center">
       <Box justify="center" align="center">
@@ -27,7 +27,7 @@ export default function Home() {
         <Spacer size="70px" />
       </Box>
 
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
     </Box>
   )
 }
