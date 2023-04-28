@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native'
 import PropTypes from 'prop-types'
 import React from 'react'
 import {SafeAreaView, StatusBar} from 'react-native'
@@ -6,7 +7,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {Box, Title, Touchable} from '../../Components'
 import {colors} from '../../Styles/theme.json'
 
-export default function Header({title}) {
+export default function Header({title = 'Explore', right = null}) {
+  const navigation = useNavigation()
   return (
     <>
       <StatusBar barStyle="default" />
@@ -20,13 +22,13 @@ export default function Header({title}) {
             width="80px"
             justify="center"
             align="center"
-            onPress={() => alert('teste')}>
+            onPress={() => navigation.openDrawer()}>
             <Icon name="menu" size={20} />
           </Touchable>
           <Box align="center" justify="center">
             <Title>{title}</Title>
           </Box>
-          <Touchable width="80px"></Touchable>
+          {right ? right() : <Touchable width="80px"></Touchable>}
         </SafeAreaView>
       </Box>
     </>
@@ -35,4 +37,5 @@ export default function Header({title}) {
 
 Header.propTypes = {
   title: PropTypes.string,
+  right: PropTypes.func,
 }

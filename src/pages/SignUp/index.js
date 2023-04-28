@@ -1,9 +1,12 @@
+import {useNavigation} from '@react-navigation/native'
 import {StatusBar} from 'expo-status-bar'
 import React from 'react'
 
 import {Box, Title, Button, Spacer, Text, Input} from '../../Components'
 
 export function SignUp() {
+  const {navigate} = useNavigation()
+
   return (
     <Box justify="center" background="light" hasPadding align="center">
       <Title bold>Create new account.</Title>
@@ -20,11 +23,11 @@ export function SignUp() {
       <Input placeholder="Password" secureTextEntry />
 
       <Spacer size="50px" />
-      <Button block>
+      <Button block onPress={() => alert('teste')}>
         <Text color="light">Create new account</Text>
       </Button>
       <Spacer size="20px" />
-      <Text underline onPress={() => alert('teste')}>
+      <Text underline onPress={() => navigate('SignIn')}>
         Back to signIn
       </Text>
 

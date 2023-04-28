@@ -1,9 +1,10 @@
 import {StatusBar} from 'expo-status-bar'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import {Box, Title, Button, Spacer, Text} from '../../Components'
 
-export function Home() {
+export function Home({navigation}) {
   return (
     <Box justify="center" fluid background="dark" hasPadding align="center">
       <Box justify="center" align="center">
@@ -17,7 +18,7 @@ export function Home() {
       </Box>
 
       <Box justify="flex-end" fluid align="center">
-        <Button block>
+        <Button block onPress={() => navigation.navigate('SignIn')}>
           <Text>SignIn my account</Text>
         </Button>
         <Spacer size="20px" />
@@ -30,4 +31,8 @@ export function Home() {
       <StatusBar style="inverted" />
     </Box>
   )
+}
+
+Home.propTypes = {
+  navigation: PropTypes.object,
 }
