@@ -1,7 +1,8 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
-import {Touchable, Box, Title} from '../../Components'
+import {Touchable} from '../../Components'
+import CategoryList from '../../Components/Category/list'
 import Header from '../../Components/Header'
 
 export default function Marketplace() {
@@ -11,7 +12,8 @@ export default function Marketplace() {
         title="Categories"
         right={() => (
           <Touchable
-            width="80px"
+            width="70px"
+            hasPadding
             justify="center"
             align="center"
             onPress={() => alert('teste')}>
@@ -19,9 +21,7 @@ export default function Marketplace() {
           </Touchable>
         )}
       />
-      <Box>
-        <Title>Marketplace</Title>
-      </Box>
+      <CategoryList />
     </>
   )
 }
