@@ -84,7 +84,7 @@ function DrawerComponent() {
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Feed">
+      <Stack.Navigator initialRouteName="Product">
         <Stack.Screen
           options={{
             headerShown: false,

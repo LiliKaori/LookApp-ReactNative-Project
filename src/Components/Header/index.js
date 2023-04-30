@@ -8,7 +8,11 @@ import {Box, Title, Touchable} from '../../Components'
 import {colors} from '../../Styles/theme.json'
 import util from '../../util'
 
-export default function Header({title = 'Explore', right = null}) {
+export default function Header({
+  title = 'Explore',
+  right = null,
+  goBack = false,
+}) {
   const navigation = useNavigation()
   return (
     <View
@@ -31,8 +35,8 @@ export default function Header({title = 'Explore', right = null}) {
           justify="center"
           align="center"
           hasPadding
-          onPress={() => navigation.openDrawer()}>
-          <Icon name="menu" size={20} />
+          onPress={() => navigation[!goBack ? 'openDrawer' : 'goBack']()}>
+          <Icon name={!goBack ? 'menu' : 'arrow-left'} size={20} />
         </Touchable>
         <Box align="center" justify="center">
           <Title>{title}</Title>
@@ -46,4 +50,5 @@ export default function Header({title = 'Explore', right = null}) {
 Header.propTypes = {
   title: PropTypes.string,
   right: PropTypes.func,
+  goBack: PropTypes.bool,
 }

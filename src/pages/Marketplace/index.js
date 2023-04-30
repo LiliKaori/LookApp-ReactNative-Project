@@ -2,7 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 import {Touchable} from '../../Components'
-import CategoryList from '../../Components/Category/list'
+import CategoryList from '../../Components/Categories/list'
 import Header from '../../Components/Header'
 
 export default function Marketplace() {

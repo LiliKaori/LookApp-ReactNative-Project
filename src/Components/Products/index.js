@@ -1,11 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {useNavigation} from '@react-navigation/native'
 
 import {Text, Box, Touchable, Cover, Spacer} from '..'
 
 export default function Products({cover, brand, title, price}) {
+  const {navigate} = useNavigation()
+
   return (
-    <Touchable hasPadding row background="light" spacing="0 0 1px 0">
+    <Touchable
+      onPress={() => navigate('Product')}
+      hasPadding
+      row
+      background="light"
+      spacing="0 0 1px 0">
       <Cover width="80px" height="80px" image={cover} />
       <Box hasPadding style={{paddingBottom: 0, paddingTop: 0}}>
         <Text color="dark">{brand}</Text>
