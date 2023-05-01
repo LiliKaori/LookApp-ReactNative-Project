@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 import {Title} from './Components'
 import {Home, Feed, SignIn, SignUp} from './pages'
+import Cart from './pages/Cart'
 import Marketplace from './pages/Marketplace'
 import Category from './pages/Marketplace/category'
 import Product from './pages/Marketplace/product'
@@ -84,7 +85,7 @@ function DrawerComponent() {
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Product">
+      <Stack.Navigator initialRouteName="Cart">
         <Stack.Screen
           options={{
             headerShown: false,
@@ -133,6 +134,13 @@ export default function Routes() {
           }}
           name="Marketplace"
           component={DrawerComponent}
+        />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Cart"
+          component={Cart}
         />
       </Stack.Navigator>
     </NavigationContainer>

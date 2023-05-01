@@ -8,7 +8,8 @@
       "dark": "#130F40",
       "gray50":"#535C68",
       "muted":"#95AFC0",
-      "black":"#000000"
+      "black":"#000000",
+      "success":"#00C48C"      
     },
     "fonts":{
       "title":{
