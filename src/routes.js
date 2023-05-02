@@ -14,6 +14,7 @@ import Cart from './pages/Cart'
 import Marketplace from './pages/Marketplace'
 import Category from './pages/Marketplace/category'
 import Product from './pages/Marketplace/product'
+import Order from './pages/Order'
 import {colors} from './Styles/theme.json'
 import util from './util'
 
@@ -34,7 +35,7 @@ function CustomDrawerComponent(props) {
 function DrawerComponent() {
   return (
     <Drawer.Navigator
-      initialRouteName="Marketplace"
+      initialRouteName="Feed"
       drawerContent={props => <CustomDrawerComponent {...props} />}
       drawerContentOptions={{
         activeBackgroundColor: util.toAlpha(colors.primary, 60),
@@ -75,8 +76,8 @@ function DrawerComponent() {
             <Icon name="basket" color={color} />
           ),
         }}
-        name="Orders"
-        component={Feed}
+        name="Order"
+        component={Order}
       />
     </Drawer.Navigator>
   )
@@ -85,7 +86,7 @@ function DrawerComponent() {
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cart">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           options={{
             headerShown: false,
