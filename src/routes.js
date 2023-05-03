@@ -67,15 +67,6 @@ function DrawerComponent() {
             <Icon name="basket" color={color} />
           ),
         }}
-        name="Product"
-        component={Product}
-      />
-      <Drawer.Screen
-        options={{
-          drawerIcon: ({focused, color}) => (
-            <Icon name="basket" color={color} />
-          ),
-        }}
         name="Order"
         component={Order}
       />
@@ -128,13 +119,6 @@ export default function Routes() {
           }}
           name="Product"
           component={Product}
-        />
-        <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name="Marketplace"
-          component={DrawerComponent}
         />
         <Stack.Screen
           options={{

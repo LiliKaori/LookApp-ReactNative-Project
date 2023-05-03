@@ -11,6 +11,18 @@
       "name": "Omar Sampaio",
       "email": "omar@teste.com",
       "password": "123"
+    },
+    {
+      "name": "Test",
+      "email": "teste@teste.com",
+      "password": "124",
+      "id": 3
+    },
+    {
+      "name": "Liliam",
+      "email": "lilikaori10@gmail.com",
+      "password": "123",
+      "id": 4
     }
   ],
   "feed": {

@@ -1,10 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import moment from 'moment'
 
 import {colors} from '../../Styles/theme.json'
 
 import {Box, Cover, Text, Touchable} from '..'
 
-export default function Stories() {
+export default function Stories({story}) {
   return (
     <Touchable
       onPress={() => alert('teste')}
@@ -13,10 +15,7 @@ export default function Stories() {
       height="190px"
       spacing="0 5px 0"
       width="150px">
-      <Cover
-        width="100%"
-        height="100%"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXovt4Pwcx41pFucTy-Dr5ce0jRSPNyrYpNg&usqp=CAU">
+      <Cover width="100%" height="100%" image={story?.cover}>
         <Box
           fluid
           hasPadding
@@ -27,18 +26,22 @@ export default function Stories() {
             width="40px"
             height="40px"
             border={`1px solid ${colors.light}`}
-            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXovt4Pwcx41pFucTy-Dr5ce0jRSPNyrYpNg&usqp=CAU"></Cover>
+            image={story?.owner?.photo}></Cover>
 
           <Box height="50px" justify="flex-end">
             <Text bold color="light">
-              Calorina Silva
+              {story?.owner?.username}
             </Text>
             <Text color="light" variant="small">
-              2 min ago
+              {moment(story?.createdAt).fromNow()}
             </Text>
           </Box>
         </Box>
       </Cover>
     </Touchable>
   )
+}
+
+Stories.propTypes = {
+  story: PropTypes.object,
 }
