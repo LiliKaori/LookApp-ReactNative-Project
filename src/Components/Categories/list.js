@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import {ScrollView} from '..'
 
 import Categories from '.'
 
-export default function CategoryList() {
+export default function CategoryList({categories}) {
   return (
     <ScrollView
       fluid
@@ -14,9 +15,13 @@ export default function CategoryList() {
         paddingLeft: 20,
         paddingRight: 20,
       }}>
-      {Array.from(Array(50))?.map(item => (
-        <Categories key={Math.random} title={'Category'} description="Legal" />
+      {categories?.map(category => (
+        <Categories key={category.id} category={category} />
       ))}
     </ScrollView>
   )
+}
+
+CategoryList.propTypes = {
+  categories: PropTypes.object,
 }

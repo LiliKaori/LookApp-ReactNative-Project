@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 
 import {Box, Button, ScrollView, Spacer, Text, Title} from '../../Components'
 import PaymentForm from '../../Components/Forms/payment'
@@ -6,12 +6,15 @@ import Header from '../../Components/Header'
 import CongratsModal from '../../Components/Modals/congrats'
 import Products from '../../Components/Products'
 import Tabs from '../../Components/Tabs'
+import {AppContext} from '../../contexts/app'
 import {colors} from '../../Styles/theme.json'
 import util from '../../util'
 
 export default function Cart() {
+  const {cart} = useContext(AppContext)
   const [showCongrats, setShowCongrats] = useState(false)
-  const [tab, setTab] = useState('payment')
+  const [tab, setTab] = useState('cart')
+
   return (
     <>
       {showCongrats && <CongratsModal />}
@@ -31,15 +34,8 @@ export default function Cart() {
         <Spacer size="20px" />
         {tab === 'cart' && (
           <>
-            {Array.from(Array(3))?.map(item => (
-              <Products
-                key={Math.random}
-                cover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXovt4Pwcx41pFucTy-Dr5ce0jRSPNyrYpNg&usqp=CAU"
-                brand="Raf Simons"
-                title="Large striped cardigan"
-                price="$1080"
-                selected
-              />
+            {cart?.map(product => (
+              <Products key={product.id} product={product} selected />
             ))}
             <Spacer size="30px" />
             <Box row width="100%" height="30px" justify="space-between">

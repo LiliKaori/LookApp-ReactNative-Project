@@ -1,18 +1,30 @@
-import React from 'react'
+import {useNavigation} from '@react-navigation/native'
+import PropTypes from 'prop-types'
+import React, {useContext, useEffect, useState} from 'react'
 import {StretchyScrollView} from 'react-native-stretchy'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 import {Box, Button, Spacer, Text, Title, Touchable} from '../../Components'
 import Header from '../../Components/Header'
 import Picker from '../../Components/Picker'
+import {AppContext} from '../../contexts/app'
 import {colors} from '../../Styles/theme.json'
 import util from '../../util'
 
-export default function Product() {
+export default function Product({route}) {
+  const navigation = useNavigation()
+  const {product} = route?.params
+  const {addToCart} = useContext(AppContext)
+  const [size, setSize] = useState()
+
+  useEffect(() => {
+    setSize(product?.size?.[0].value)
+  }, [product])
+
   return (
     <>
       <Header
-        title="Striped Cardigan"
+        title={product?.title}
         goBack
         right={() => (
           <Touchable
@@ -20,52 +32,53 @@ export default function Product() {
             hasPadding
             justify="center"
             align="center"
-            onPress={() => alert('teste')}>
+            onPress={() => navigation.navigate('Cart')}>
             <Icon name="bag" size={20}></Icon>
           </Touchable>
         )}
       />
+
       <StretchyScrollView
         image={{
-          uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXovt4Pwcx41pFucTy-Dr5ce0jRSPNyrYpNg&usqp=CAU',
+          uri: product?.cover,
         }}
         imageOverlay={<Box background={util.toAlpha(colors.dark, 40)}></Box>}
         foreground={
           <Box hasPadding justify="flex-end">
             <Title bold color="light" variant="big">
-              $1080
+              ${product?.price}
             </Title>
           </Box>
         }>
         <Box hasPadding background="light">
-          <Text color="black">TSHIRT</Text>
+          <Text color="black">{product?.type}</Text>
           <Spacer size="20px" />
-          <Title color="black">A.P.C. CollectionSpring 2015 </Title>
+          <Title color="black">{product?.title}</Title>
           <Spacer size="30px" />
-          <Text color="dark">
-            Enjoy the beauty of italian cotton all over your body. This item
-            will fit your body and warm you up all over and during spring. This
-            item will fit your body and warm you up all over and during spring.
-            And over and over again, this is the text.
-          </Text>
+          <Text color="dark">{product?.description}</Text>
           <Spacer size="30px" />
           <Picker
             title="Size"
-            options={[
-              {label: 'P', value: 'P'},
-              {label: 'M', value: 'M'},
-              {label: 'G', value: 'G'},
-              {label: 'XG', value: 'XG'},
-            ]}
-            initialValue="M"
-            onChange={value => alert(value)}
+            options={product?.sizes}
+            initialValue={product?.sizes?.[0]?.value}
+            onChange={value => setSize(value)}
           />
           <Spacer size="30px" />
-          <Button block>
+
+          <Button
+            block
+            onPress={() => {
+              addToCart({...product, size})
+              navigation.navigate('Cart')
+            }}>
             <Text color="light">Add to Cart</Text>
           </Button>
         </Box>
       </StretchyScrollView>
     </>
   )
+}
+
+Product.propTypes = {
+  route: PropTypes.object,
 }
