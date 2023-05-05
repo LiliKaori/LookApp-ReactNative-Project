@@ -20,8 +20,8 @@ export default function PaymentForm({onChange = credCardData => {}}) {
     <>
       <SegmentedPicker
         ref={pickerRef}
-        onConfirm={data =>
-          setData({...data, validDate: `${data.month}/${data.year}`})
+        onConfirm={vDate =>
+          setData({...data, validDate: `${vDate.month}/${vDate.year}`})
         }
         options={[
           {
@@ -65,7 +65,7 @@ export default function PaymentForm({onChange = credCardData => {}}) {
         <Spacer size="20px" />
         <Input
           placeholder="Name"
-          value={data.holder_name}
+          value={data.holderName}
           onChangeText={holderName => setData({...data, holderName})}
         />
         <Spacer />
@@ -76,7 +76,12 @@ export default function PaymentForm({onChange = credCardData => {}}) {
         />
         <Spacer />
         <Touchable width="100%" onPress={() => pickerRef.current.show()}>
-          <Input pointerEvents="none" editable={false} placeholder="09/2025" />
+          <Input
+            value={data.validDate}
+            pointerEvents="none"
+            editable={false}
+            placeholder="09/2025"
+          />
         </Touchable>
         <Spacer />
         <Box row>

@@ -4,6 +4,10 @@ import React, {createContext, useState} from 'react'
 export const AppContext = createContext({})
 
 export default function ContextProvider({children}) {
+  const discountPercentage = 0.1
+  const deliveryTax = 10
+  const orderNumber = new Date().getTime()
+
   const [user, setUser] = useState({})
   const [cart, setCart] = useState([])
 
@@ -26,12 +30,22 @@ export default function ContextProvider({children}) {
   }
 
   return (
-    <AppContext.Provider value={{user, setUser, cart, addToCart, removeToCart}}>
+    <AppContext.Provider
+      value={{
+        user,
+        setUser,
+        cart,
+        addToCart,
+        removeToCart,
+        discountPercentage,
+        deliveryTax,
+        orderNumber,
+      }}>
       {children}
     </AppContext.Provider>
   )
 }
 
-ContextProvider.proptypes = {
+ContextProvider.propTypes = {
   children: PropTypes.node,
 }

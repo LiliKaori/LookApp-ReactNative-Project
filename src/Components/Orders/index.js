@@ -1,3 +1,5 @@
+import moment from 'moment'
+import PropTypes from 'prop-types'
 import React from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
@@ -6,7 +8,23 @@ import {colors} from '../../Styles/theme.json'
 
 import {Box, Text, Title} from '..'
 
-export default function Orders() {
+export default function Orders({order}) {
+  const stepEnum = {
+    waiting: {
+      icon: 'clock',
+      color: 'warning',
+    },
+    delivered: {
+      icon: 'check',
+      color: 'success',
+    },
+    canceled: {
+      icon: 'close',
+      color: 'danger',
+    },
+  }
+
+  const stepData = stepEnum[order?.step]
   return (
     <Box
       hasPadding
@@ -23,12 +41,12 @@ export default function Orders() {
           borderBottomColor: util.toAlpha(colors.muted, 50),
         }}>
         <Box row align="center">
-          <Icon name="check" size={20} color={colors.success} />
-          <Text color="success" spacing="0 0 0 10px">
-            DELIVERED
+          <Icon name={stepData.icon} size={20} color={colors[stepData.color]} />
+          <Text color={stepData.color} spacing="0 0 0 10px">
+            {order?.step?.toUpperCase()}
           </Text>
         </Box>
-        <Text>August 17, 2016 3:58 PM</Text>
+        <Text>{moment(order?.createdAt).format('DD/MM/YYYY HH:mm')}</Text>
       </Box>
       <Box
         hasPadding
@@ -37,19 +55,23 @@ export default function Orders() {
           borderBottomWidth: 1,
           borderBottomColor: util.toAlpha(colors.muted, 50),
         }}>
-        <Title>Orders Nº947034</Title>
+        <Title>Order Nº{order?.orderNumber}</Title>
         <Text>
-          Tracking number: <Text color="dark">Nº947034</Text>
+          Tracking number: <Text color="dark">{order?.trackingNumber}</Text>
         </Text>
       </Box>
       <Box hasPadding row justify="space-between" width="100%">
         <Text>
-          VALUE OF ITEMS: <Text color="dark">$66.60</Text>
+          VALUE ORDER: <Text color="dark">${order?.totalValue.toFixed(2)}</Text>
         </Text>
         <Text>
-          QUANTITY: <Text color="dark">3</Text>
+          QUANTITY: <Text color="dark">{order?.totalItems}</Text>
         </Text>
       </Box>
     </Box>
   )
+}
+
+Orders.propTypes = {
+  order: PropTypes.object,
 }

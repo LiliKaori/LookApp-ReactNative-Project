@@ -166,15 +166,6 @@
       "id": 2
     },
     {
-      "step": "waiting",
-      "createdAt": "2022-04-22T12:29:54-03:00",
-      "orderNumber": 1650641359165,
-      "trackingNumber": 1650641394273,
-      "totalValue": 1079.2,
-      "totalItems": 1,
-      "id": 3
-    },
-    {
       "userId": 4,
       "step": "delivered",
       "createdAt": "2022-04-22T12:43:33-03:00",

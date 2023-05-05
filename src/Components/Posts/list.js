@@ -19,18 +19,5 @@ export default function PostsList({posts}) {
 }
 
 PostsList.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      cover: PropTypes.string,
-      description: PropTypes.string,
-      isLiked: PropTypes.bool,
-      likeInfos: PropTypes.object,
-      owner: {
-        username: PropTypes.string,
-        photo: PropTypes.string,
-      },
-      createdAt: PropTypes.string,
-    })
-  ),
+  posts: PropTypes.array,
 }
